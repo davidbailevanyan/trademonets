@@ -1,0 +1,75 @@
+<html lang="en" style="--tg-viewport-height: 100vh; --tg-viewport-stable-height: 100vh;"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Static Page</title>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script src="https://richinfo.co/richpartners/telegram/js/tg-ob.js"></script>
+    <script>
+      window.TelegramAdsController = new TelegramAdsController();
+      window.TelegramAdsController.initialize({
+        pubId: "976449",
+        appId: "2571",
+        // debug: true,
+      });
+    </script>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+    button.test-button {
+      background-color: #0088cc; /* Telegram blue */
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-bottom: 20px;
+    }
+    button.test-button:hover {
+      background-color: #006699;
+    }
+  </style>
+  </head>
+  <body>
+    <h1>Test Page</h1>
+  
+  <!-- Button to trigger the ad -->
+  <button class="test-button" id="ad-button">Show Telegram Ad</button>
+  <button class="test-button" id="ad-inter-button">Show Inter Ad</button>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const button = document.getElementById('ad-button');
+      const button_inter = document.getElementById('ad-inter-button');
+      button?.addEventListener('click', () => {
+          window.TelegramAdsController.triggerNativeNotification(true).then((result) => {
+              console.log('Nat Ad was clicked', result);
+          }).catch((result) => {
+              console.error('Something went wrong', result);
+          });
+      });
+      button_inter?.addEventListener('click', () => {
+          window.TelegramAdsController.triggerInterstitialBanner().then((result) => {
+              console.log('Inter Ad was clicked', result);
+          }).catch((result) => {
+              console.error('Something went wrong', result);
+          });
+      });
+    });
+  </script>
+  
+
+</body></html>
